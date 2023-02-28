@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .title_page {
+        text-align: center;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
+      }
+
+      .content {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .text {
+        font-size: 20px;
+        font-weight: normal;
+        text-align: center;
+      }
+
+      h2 {
+        text-decoration: none;
+        color: black;
+      }
+
+      h3 {
+        text-decoration: none;
+        color: red;
+      }
+
+      p {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Задание 1
+1. Поиск в интернете (бесплатные api примеры).
+2. Найти любые данные, на произвольную тему.
+3. Создать файл data.js.
+4. Создать переменную которая будет хранить данные из публичных api.
+
+Задание 2
+1. Создать файл index.html.
+2. Подключить data.js.
+3. Сформировать контент из данных (картинка загловок и параграф).
+4. Добавить данный контент в вёрстку.
+5. * Добавить стили при необходимости (по желанию). -->
+    <h1 class="title_page">База вопросов для викторин</h1>
+
+    <div class="content"></div>
+    <h4 class="footer">Правда интересные вопросы?)</h4>
+    <script src="data.js"></script>
+    <script>
+      const data = JSON.parse(dataInfo);
+      console.log(data);
+      const contentEl = document.querySelector(".content");
+
+      data.forEach((dataElem) => {
+        const divEl = document.createElement("div");
+        divEl.classList.add("first");
+
+        const titleEl = document.createElement("h2");
+        titleEl.classList.add("title");
+
+        const questEl = document.createElement("h2");
+        questEl.classList.add("text");
+        questEl.textContent = dataElem.question;
+
+        const ansEl = document.createElement("h3");
+        ansEl.classList.add("text");
+        ansEl.textContent = dataElem.answer;
+
+        const imgEl = document.createElement("img");
+        imgEl.classList.add("image");
+        imgEl.src = dataElem.img_url;
+
+        contentEl.appendChild(divEl);
+        divEl.appendChild(titleEl);
+
+        divEl.appendChild(questEl);
+        questEl.appendChild(ansEl);
+        divEl.appendChild(imgEl);
+      });
+    </script>
+  </body>
+</html>
